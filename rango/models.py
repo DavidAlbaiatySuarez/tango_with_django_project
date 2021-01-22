@@ -8,6 +8,8 @@ class Category(models.Model):
     # we can use default='value' so that field has a default value
     # or whether a value for a field is allowed to be NULL (null=True)
     name = models.CharField(max_length=128, unique=True)
+    views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
 
     # changes the category name from 'Categorys' to 'Categories'
     class Meta:
