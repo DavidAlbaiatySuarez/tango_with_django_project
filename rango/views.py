@@ -17,10 +17,12 @@ def index(request):
     # Place the list in our context_dict dictionary (with out boldmessage!)
     # that will be passed to the template engine
     category_list = Category.objects.order_by('-likes')[:5] # - denotes that we want the likes in descending order
+    page_list = Page.objects.order_by('-views')[:5]
     
     context_dict = {}
-    context_dict['boldmesage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
+    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
     context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
 
     # Note that the first parameter is the template we wish to use
     # Render the response and send it back!
@@ -42,7 +44,7 @@ def show_category(request, category_name_slug):
 
         # Retrieve all of the associated pages.
         # The filter() will return a list of page objects or an empty list.
-        pages = Page.object.filter(category=category)
+        pages = Page.objects.filter(category=category)
 
         # Adds our results list to the template context under name pages.
         context_dict['pages'] = pages
